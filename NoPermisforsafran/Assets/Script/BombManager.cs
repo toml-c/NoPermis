@@ -51,14 +51,21 @@ public class BombManager : MonoBehaviour
 
         else if (_timer <= 0 && BombPermited == false)
         {
+            /*
             Collider[] col = Physics.OverlapSphere(_lastestBomb.transform.position, RadiusSize, _whatToHit);
 
             foreach (var item in col)
             {
                 Destroy(item.gameObject);
             }
+            */
 
-            Destroy(_lastestBomb);
+            foreach (Transform t in _lastestBomb.transform) 
+            { 
+                t.gameObject.SetActive(true);
+            }
+
+            Destroy(_lastestBomb, 0.2f);
             _timer = 0;
             BombPermited = true;
         }
