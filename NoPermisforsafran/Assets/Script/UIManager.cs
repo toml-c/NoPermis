@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //public static UIManager instance;
+    public static UIManager instance;
 
     public int Gold;
+    public Image TimerImage;
 
     public float TimerMax;
     float _currentTimer;
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
     TMP_Text _timerText;
     public TMP_Text GoldText;
 
-    /*private void Awake()
+    private void Awake()
     {
         if(instance == null)
         {
@@ -28,19 +29,19 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("There is already another UI script in this scene !");
         }
-    }*/
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        _timerDisplay = GetComponent<Image>();
+        _timerDisplay = TimerImage;
         _currentTimer = TimerMax;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        GoldText.text = "Gold : " + Gold.ToString();
         _timerText.text = ((int)_currentTimer).ToString();
         _timerDisplay.fillAmount = _currentTimer / TimerMax;
         if (!_isGameOver)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1084618927752167130}
   - component: {fileID: 6054728004100639519}
   - component: {fileID: 6166694283683386381}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Paint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1679498545760056641
 MeshFilter:
