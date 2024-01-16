@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public Image TimerImage;
 
     public float TimerMax;
-    float _currentTimer;
+    public float _currentTimer;
     bool _isGameOver;
     Image _timerDisplay;
     [SerializeField]
