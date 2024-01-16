@@ -4,9 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public static UI instance;
+    //public static UIManager instance;
+
+    public int Gold;
 
     public float TimerMax;
     float _currentTimer;
@@ -14,9 +16,9 @@ public class UI : MonoBehaviour
     Image _timerDisplay;
     [SerializeField]
     TMP_Text _timerText;
-    public TMP_Text _goldText;
+    public TMP_Text GoldText;
 
-    private void Awake()
+    /*private void Awake()
     {
         if(instance == null)
         {
@@ -26,7 +28,7 @@ public class UI : MonoBehaviour
         {
             Debug.LogError("There is already another UI script in this scene !");
         }
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         _timerText.text = ((int)_currentTimer).ToString();
         _timerDisplay.fillAmount = _currentTimer / TimerMax;
         if (!_isGameOver)
