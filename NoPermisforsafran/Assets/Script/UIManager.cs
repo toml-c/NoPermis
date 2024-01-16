@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GoldText.text = "Gold : " + Gold.ToString();
         _timerDisplay = TimerImage;
         _currentTimer = TimerMax;
     }
@@ -41,7 +42,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GoldText.text = "Gold : " + Gold.ToString();
         _timerText.text = ((int)_currentTimer).ToString();
         _timerDisplay.fillAmount = _currentTimer / TimerMax;
         if (!_isGameOver)
