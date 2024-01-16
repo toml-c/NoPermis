@@ -55,7 +55,7 @@ public class BombManager : MonoBehaviour
 
     void Create()
     {
-        _lastestBomb = Instantiate(BombPrefab, transform.position, Quaternion.identity);
+        _lastestBomb = Instantiate(BombPrefab, transform.position + (transform.forward * 2), Quaternion.identity);
         _timer = 4f;
         _timerMax = _timer;
         _isThereBomb = true;
