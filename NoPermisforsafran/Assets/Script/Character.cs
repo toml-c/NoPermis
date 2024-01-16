@@ -7,11 +7,13 @@ public class Character : MonoBehaviour
 {
     public float playerSpeed;
     CharacterController controller;
+    public float colliderRadius;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        controller.radius = colliderRadius;
     }
 
     // Update is called once per frame
