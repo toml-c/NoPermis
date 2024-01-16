@@ -278,8 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BombPrefab: {fileID: 6454542762311288317, guid: 6499154625d8290478579a8eb0eb178e,
     type: 3}
-  ColliderSize: 0
-  whatToHit:
+  RadiusSize: 3
+  _whatToHit:
     serializedVersion: 2
     m_Bits: 256
 --- !u!1 &330585543
@@ -1545,7 +1545,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1626522999804330432, guid: 9159b9b49b2f01042945e251b4c7ee58,
         type: 3}
-      insertIndex: 5
+      insertIndex: -1
       addedObject: {fileID: 254634487}
   m_SourcePrefab: {fileID: 100100000, guid: 9159b9b49b2f01042945e251b4c7ee58, type: 3}
 --- !u!1001 &8216004745022165773
