@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class BombManager : MonoBehaviour
 {
-
+    public static BombManager instance;
     public GameObject BombPrefab;
     public int RadiusSize;
+    public bool BombPermited = true;
 
     [SerializeField] private LayerMask _whatToHit;
     private GameObject _lastestBomb;
-    bool _isThereBomb = false;
     float _timerMax;
     float _timer = 0;
 
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogError("There is already another UI script in this scene !");
+        }
     }
 
     // Start is called before the first frame update
@@ -27,18 +35,21 @@ public class BombManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightControl))
+        if (BombPermited == true)
         {
-
-            Create();
+            if (Input.GetKeyDown(KeyCode.RightControl))
+            {
+                Create();
+            }
         }
+        
 
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
         }
 
-        else if (_timer <= 0 && _isThereBomb)
+        else if (_timer <= 0 && BombPermited == false)
         {
             Collider[] col = Physics.OverlapSphere(_lastestBomb.transform.position, RadiusSize, _whatToHit);
 
@@ -49,7 +60,7 @@ public class BombManager : MonoBehaviour
 
             Destroy(_lastestBomb);
             _timer = 0;
-            _isThereBomb = false;
+            BombPermited = true;
         }
     }
 
@@ -58,7 +69,7 @@ public class BombManager : MonoBehaviour
         _lastestBomb = Instantiate(BombPrefab, transform.position + (transform.forward * 2), Quaternion.identity);
         _timer = 4f;
         _timerMax = _timer;
-        _isThereBomb = true;
+        BombPermited = false;
     }
 
 }
