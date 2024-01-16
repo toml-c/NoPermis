@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,17 +29,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        GoldText.text = "Gold : " + Gold.ToString();
         _timerDisplay = TimerImage;
         _currentTimer = TimerMax;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        GoldText.text = "Gold : " + Gold;
+
         _timerText.text = ((int)_currentTimer).ToString();
         _timerDisplay.fillAmount = _currentTimer / TimerMax;
         if (!_isGameOver)
@@ -58,6 +55,5 @@ public class UIManager : MonoBehaviour
     private void GameOver()
     {
         print("dead");
-
     }
 }

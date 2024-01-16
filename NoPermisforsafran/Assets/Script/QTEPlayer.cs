@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class QTEPlayer : MonoBehaviour
 {
@@ -9,13 +9,13 @@ public class QTEPlayer : MonoBehaviour
     public string TextBase;
     public int NumberLetter;
     [SerializeField] private int VerifLetters;
-
-
+    
     private void Start()
     {
         LettersValid.AddRange(new char[] { 'A', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'W', 'X', 'C', 'V', 'B', 'N' });
         VerifLetters = 0;
     }
+    
     public void Update()
     {
         char c = ' ';

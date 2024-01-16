@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BombManager : MonoBehaviour
 {
     public static BombManager instance;
-    public GameObject BombPrefab;
-    public int RadiusSize;
-    public bool BombPermited = true;
 
-    [SerializeField] private LayerMask _whatToHit;
-    private GameObject _lastestBomb;
-    float _timerMax;
-    float _timer = 0;
+    [Header("References")] [SerializeField]
+    private GameObject _player1;
+    [SerializeField] private GameObject _bombPrefab;
+    [SerializeField] private LayerMask _targetLayer;
+    [SerializeField] private float _bombRange;
+    public bool BombPermited;
 
+    [Space(10)][Header("Bomb Properties Debug")]
+    [SerializeField] private GameObject _lastestBomb;
+    [SerializeField] private float _timerMax;
+    [SerializeField] private float _currentTimer;
 
+    [Space(10)] [Header("Recursive Bomb")] 
+    [SerializeField] private float _timerRecursiveMax;
+    [SerializeField] private float _currentTimerRecursive;
+    [SerializeField] private bool _isRecursive;
+    public int _nbRecursiveBomb;
+    
     private void Awake()
     {
         if (instance == null)
@@ -27,56 +34,72 @@ public class BombManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    public void Start()
+    private void Start()
     {
+        _currentTimer = _timerMax;
+        _currentTimerRecursive = _timerRecursiveMax;
+        BombPermited = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (BombPermited == true)
+        if (BombPermited)
         {
             if (Input.GetKeyDown(KeyCode.RightControl))
             {
-                Create();
+                CreateBomb();
             }
         }
-        
-
-        if (_timer > 0)
+        else
         {
-            _timer -= Time.deltaTime;
+            _currentTimer -= Time.deltaTime;
         }
-
-        else if (_timer <= 0 && BombPermited == false)
+        
+        if (_currentTimer <= 0)
         {
-            /*
-            Collider[] col = Physics.OverlapSphere(_lastestBomb.transform.position, RadiusSize, _whatToHit);
+            Collider[] col = Physics.OverlapSphere(_lastestBomb.transform.position, _bombRange, _targetLayer);
 
             foreach (var item in col)
             {
                 Destroy(item.gameObject);
             }
-            */
 
-            foreach (Transform t in _lastestBomb.transform) 
-            { 
+            foreach (Transform t in _lastestBomb.transform)
+            {
                 t.gameObject.SetActive(true);
             }
 
             Destroy(_lastestBomb, 0.2f);
-            _timer = 0;
+
             BombPermited = true;
+            _currentTimer = _timerMax;
+        }
+
+        //Recursive
+        if (_isRecursive)
+        {
+            _currentTimerRecursive -= Time.deltaTime;
+        }
+
+        if (_currentTimerRecursive <= 0)
+        {
+            _isRecursive = false;
+            _nbRecursiveBomb = 0;
         }
     }
 
-    void Create()
+    private void CreateBomb()
     {
-        _lastestBomb = Instantiate(BombPrefab, transform.position + (transform.forward * 2), Quaternion.identity);
-        _timer = 4f;
-        _timerMax = _timer;
+        _lastestBomb = Instantiate(_bombPrefab, _player1.transform.position, Quaternion.identity);
         BombPermited = false;
+        
+        //Recursive bomb
+        if (_isRecursive)
+        {
+            _nbRecursiveBomb++;
+        }
+        
+        _isRecursive = true;
+        _currentTimerRecursive = _timerRecursiveMax;
     }
-
 }

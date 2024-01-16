@@ -14,7 +14,6 @@ public class Collect : MonoBehaviour
             other.GetComponent<Character>();
             Destroy(gameObject);
             UIManager.instance.Gold += GoldEarn;
-            UIManager.instance.GoldText.text = "Gold : " + UIManager.instance.Gold.ToString();
         }
     }
 

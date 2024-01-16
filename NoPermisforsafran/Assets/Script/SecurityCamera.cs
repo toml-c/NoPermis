@@ -1,41 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
     public LayerMask TargetLayer;
-
-    bool _isInvincible = false;
-    float _invincibleTime;
-
-
+    [SerializeField] private float _invincibleTimeMax;
+    
+    private float _invicibleTime;
+    private bool _isInvincible = false;
+    
     private void Update()
     {
-        if (_invincibleTime > 0)
+        if (_invicibleTime > 0)
         {
-            _invincibleTime -= Time.deltaTime;
+            _invicibleTime -= Time.deltaTime;
         }
 
-        if (_invincibleTime <= 0)
+        if (_invicibleTime <= 0)
         {
             _isInvincible = false;
         }
-
-
-
     }
-
-
-    public void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Character1" || other.gameObject.name == "Character2" && _isInvincible == false)
+        if (Contains(TargetLayer, other.gameObject.layer) && _isInvincible == false)
         {
             UIManager.instance._currentTimer -= 8f;
             _isInvincible = true;
-            _invincibleTime = 2.5f;
-
+            _invicibleTime = _invincibleTimeMax;
         }
-        
+    }
+    
+    private static bool Contains(LayerMask mask, int layer)
+    {
+        return mask == (mask | (1 << layer));
     }
 }
