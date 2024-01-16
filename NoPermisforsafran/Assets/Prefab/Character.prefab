@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 8825301359102939744}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2846678845799566336
 MeshFilter:
@@ -100,6 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   colliderRadius: 0.42
+  up: 0
+  down: 0
+  left: 0
+  right: 0
 --- !u!54 &3446294287070834800
 Rigidbody:
   m_ObjectHideFlags: 0
