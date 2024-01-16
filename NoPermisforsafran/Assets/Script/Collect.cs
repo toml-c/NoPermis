@@ -11,8 +11,10 @@ public class Collect : MonoBehaviour
     {
         if (Contains(TargetLayer, other.gameObject.layer))
         {
-            other.GetComponent<Character>().Gold += GoldEarn;
+            other.GetComponent<Character>();
             Destroy(gameObject);
+
+            UIManager.instance.Gold += GoldEarn;
         }
     }
 
