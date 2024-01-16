@@ -7,7 +7,6 @@ public class Character : MonoBehaviour
 {
     public float playerSpeed;
     CharacterController controller;
-    public int Gold;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,6 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UI.instance._goldText.text = "Gold : " + Gold.ToString();
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical"));
        controller.Move(move * Time.deltaTime * playerSpeed);
