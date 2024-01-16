@@ -35359,7 +35359,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1032854078
 RectTransform:
@@ -70810,9 +70810,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34c3f881eb930b4587d9af5bbfc1588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gold: 0
+  TimerImage: {fileID: 0}
   TimerMax: 60
   _timerText: {fileID: 1536065547}
-  _goldText: {fileID: 128206052}
+  GoldText: {fileID: 0}
 --- !u!1001 &1913295081
 PrefabInstance:
   m_ObjectHideFlags: 0
