@@ -29,7 +29,7 @@ public class SecurityCamera : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Character" && _isInvincible == false)
+        if (other.gameObject.name == "Character1" || other.gameObject.name == "Character2" && _isInvincible == false)
         {
             UIManager.instance._currentTimer -= 8f;
             _isInvincible = true;
