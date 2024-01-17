@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject MenuPause;
     public int Gold;
     public Image TimerImage;
-    public CanvasGroup Fade;
+    public Image Fade;
 
     public float TimerMax;
     public float _currentTimer;
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Fade.DOFade(0, 3);
         if(instance == null)
         {
             instance = this;

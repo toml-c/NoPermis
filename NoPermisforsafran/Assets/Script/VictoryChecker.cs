@@ -18,6 +18,10 @@ public class VictoryChecker : MonoBehaviour
     private bool _leftPressed = false;
     private bool _rightPressed = false;
 
+    private void Start()
+    {
+        Fade.DOFade(0, 3);
+    }
     private void Update()
     {
         _feedBackInput.SetActive(_playerCount != 0);
