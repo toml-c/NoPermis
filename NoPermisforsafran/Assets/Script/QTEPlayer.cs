@@ -32,8 +32,8 @@ public class QTEPlayer : MonoBehaviour
                 string correct = TextBase.Substring(0, VerifLetters);
                 string otherPart = TextBase.Substring(VerifLetters, TextBase.Length - VerifLetters);
 
-                Debug.Log("CORRECT : " + correct);
-                Debug.Log("NEXT : " +otherPart );
+                //Debug.Log("CORRECT : " + correct);
+                //Debug.Log("NEXT : " +otherPart );
 
                 TextBaseTMP.text = $"<color=red>{correct}</color>{otherPart}"; ;
                 if (VerifLetters == NumberLetter)
