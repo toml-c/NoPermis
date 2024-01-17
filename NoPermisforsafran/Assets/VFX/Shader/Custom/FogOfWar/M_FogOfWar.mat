@@ -54,12 +54,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeMask: 0.001
-    - _FogAlpha: 0.98
+    - _EdgeMask: 0.00216
+    - _FogAlpha: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Tiling: 1.5
     m_Colors:
-    - _FogColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0.99607843}
+    - _FogColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.99607843}
   m_BuildTextureStacks: []
 --- !u!114 &6213526962375762956
 MonoBehaviour:
