@@ -52,7 +52,7 @@ public class BombManager : MonoBehaviour
                 CreateBomb();
             }
         }
-        else
+        if(_lastestBomb != null)
         {
             _currentTimer -= Time.deltaTime;
         }
