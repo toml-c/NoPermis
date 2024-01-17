@@ -10,7 +10,13 @@ public class MainMenu : MonoBehaviour
 {
     public List<GameObject> ButtonsMenu = new List<GameObject>();
     public List<GameObject> Noms = new List<GameObject>();
-    //public Image Fade;
+    public Image Fade;
+
+
+    private void Start()
+    {
+        Fade.enabled = false;
+    }
 
     public void OnClickPlay()
     { 
@@ -64,15 +70,17 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator FadingPlay()
     {
-        //Fade.DOFade(1, 3);
-        yield return new WaitForSeconds(3);
+        Fade.enabled = true;
+        Fade.DOFade(1, 2);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("SCENE_FINALE");
     }
 
     IEnumerator FadingQuit()
     {
-        //Fade.DOFade(1, 3);
-        yield return new WaitForSeconds(3);
+        Fade.enabled = true;
+        Fade.DOFade(1, 2);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("SCENE_FINALE");
     }
 
