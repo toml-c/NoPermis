@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public GameObject MenuPause;
     public int Gold;
     public Image TimerImage;
 
@@ -56,4 +57,7 @@ public class UIManager : MonoBehaviour
     {
         print("dead");
     }
+
+
+
 }
