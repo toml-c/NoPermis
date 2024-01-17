@@ -4,8 +4,9 @@ public class BombManager : MonoBehaviour
 {
     public static BombManager instance;
 
-    [Header("References")] [SerializeField]
-    private GameObject _player1;
+    [Header("References")] 
+    [SerializeField] private Bomb bomb;
+    [SerializeField] private GameObject _player1;
     [SerializeField] private GameObject _bombPrefab;
     [SerializeField] private GameObject _areabombPrefab;
     [SerializeField] private LayerMask _targetLayer;
@@ -89,9 +90,12 @@ public class BombManager : MonoBehaviour
         _lastestBomb = Instantiate(_bombPrefab, _player1.transform.position, Quaternion.identity);
         _previewBomb = Instantiate(_areabombPrefab, _player1.transform.position, Quaternion.identity);
         BombPermited = false;
+
+        bomb.ActualBomb = _lastestBomb;
+        bomb.CanChooseWord = true;
         
         //Recursive bomb
-        if (_isRecursive)
+        if (_isRecursive && _nbRecursiveBomb < 5)
         {
             _nbRecursiveBomb++;
         }

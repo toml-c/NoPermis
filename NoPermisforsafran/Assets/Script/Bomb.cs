@@ -4,22 +4,27 @@ public class Bomb : MonoBehaviour
 {
     public GameObject ActualBomb;
     public GameObject QTEPivot;
-    public float QTERelativePosition;
+    public Vector3 QTERelativePosition;
     public QTE QTE;
-    public bool CanChooseWord;
+    [HideInInspector] public bool CanChooseWord;
 
     private void Update()
     {
         if (ActualBomb != null)
         {
+            QTEPivot.SetActive(true);
             QTEPivot.transform.position = ActualBomb.transform.position;
-            QTEPivot.transform.position += new Vector3(0, QTERelativePosition, 0);
+            QTEPivot.transform.position += new Vector3(QTERelativePosition.x, QTERelativePosition.y, QTERelativePosition.z);
 
             if (CanChooseWord)
             {
                 CanChooseWord = false;   
                 QTE.WordChosen();
             }
+        }
+        else
+        {
+            QTEPivot.SetActive(false);
         }
     }
 }
