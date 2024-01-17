@@ -1,8 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System.Collections;
+using UnityEngine.UI;
+
 
 public class VictoryChecker : MonoBehaviour
 {
     public GameObject _feedBackInput;
+    public Image Fade;
 
     [Space(10)]
     [Header("Debug")]
@@ -32,7 +38,7 @@ public class VictoryChecker : MonoBehaviour
 
             if (_rightPressed == true && _leftPressed == true)
             {
-                Debug.Log("You Won!");
+                StartCoroutine(GameOver());
             }
         }
 
@@ -49,7 +55,7 @@ public class VictoryChecker : MonoBehaviour
         }
     }
 
-   
+
 
     private void OnTriggerExit(Collider collision)
     {
@@ -64,5 +70,12 @@ public class VictoryChecker : MonoBehaviour
     private static bool Contains(LayerMask mask, int layer)
     {
         return mask == (mask | (1 << layer));
+    }
+
+    IEnumerator GameOver()
+    {
+        Fade.DOFade(1, 3);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("SCENE_GAMEWIN");
     }
 }
