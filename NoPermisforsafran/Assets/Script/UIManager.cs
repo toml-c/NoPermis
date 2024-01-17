@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using DG.Tweening;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject MenuPause;
     public int Gold;
     public Image TimerImage;
+    public Image Fade;
 
     public float TimerMax;
     public float _currentTimer;
@@ -20,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Fade.DOFade(0, 3);
         if(instance == null)
         {
             instance = this;
@@ -51,13 +57,15 @@ public class UIManager : MonoBehaviour
         if (_currentTimer < 0 && _isGameOver == false)
         {
             _isGameOver = true;
-            GameOver();
+            StartCoroutine(GameOver());
         }
     }
 
-    private void GameOver()
+    IEnumerator GameOver()
     {
-        print("dead");
+        Fade.DOFade(1, 3);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("SCENE_GAMEOVER");
     }
 
 
