@@ -38,6 +38,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        if (Gold <= 0)
+            Gold = 0;
         GoldText.text = "Gold : " + Gold;
 
         _timerText.text = ((int)_currentTimer).ToString();
