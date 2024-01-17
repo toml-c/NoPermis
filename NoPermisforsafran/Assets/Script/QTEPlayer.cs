@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -18,11 +19,23 @@ public class QTEPlayer : MonoBehaviour
         });
         VerifLetters = 0;
     }
+    
+    IEnumerator ActiveBomb()
+    {
+        BombManager.instance._player2.GetComponent<Animator>().SetBool("IsActiveBomb", true);
+        yield return new WaitForSeconds(0.1f);
+        BombManager.instance._player2.GetComponent<Animator>().SetBool("IsActiveBomb", false);
+    } 
 
     public void Update()
     {
         if (BombManager.instance._lastestBomb != null)
         {
+            if (Input.anyKeyDown)
+            {
+                StartCoroutine(ActiveBomb());
+            }
+            
             char c = ' ';
             if (TextBase.Length > 0)
             {

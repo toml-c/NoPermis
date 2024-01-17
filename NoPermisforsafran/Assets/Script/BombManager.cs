@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BombManager : MonoBehaviour
@@ -7,6 +9,7 @@ public class BombManager : MonoBehaviour
     [Header("References")] 
     [SerializeField] private Bomb bomb;
     [SerializeField] private GameObject _player1;
+    public GameObject _player2;
     [SerializeField] private GameObject _bombPrefab;
     [SerializeField] private GameObject _areabombPrefab;
     [SerializeField] private LayerMask _targetLayer;
@@ -45,6 +48,12 @@ public class BombManager : MonoBehaviour
         _nbRecursiveBomb = 1;
     }
 
+    IEnumerator PosingBomb()
+    {
+        _player1.GetComponent<Animator>().SetBool("IsPosingBomb", true);
+        yield return new WaitForSeconds(0.3f);
+        _player1.GetComponent<Animator>().SetBool("IsPosingBomb", false);
+    }
     void Update()
     {
         if (BombPermited)
@@ -52,6 +61,7 @@ public class BombManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightControl))
             {
                 CreateBomb();
+                StartCoroutine(PosingBomb());
             }
         }
         if(_lastestBomb != null)
@@ -99,8 +109,8 @@ public class BombManager : MonoBehaviour
 
     private void CreateBomb()
     {
-        _lastestBomb = Instantiate(_bombPrefab, _player1.transform.position, Quaternion.identity);
-        _previewBomb = Instantiate(_areabombPrefab, _player1.transform.position, Quaternion.identity);
+        _lastestBomb = Instantiate(_bombPrefab, new Vector3(_player1.transform.position.x, _player1.transform.position.y + 0.7f, _player1.transform.position.z), Quaternion.identity);
+        _previewBomb = Instantiate(_areabombPrefab,new Vector3(_player1.transform.position.x, _player1.transform.position.y + 0.72f, _player1.transform.position.z), Quaternion.identity);
         BombPermited = false;
 
         bomb.ActualBomb = _lastestBomb;

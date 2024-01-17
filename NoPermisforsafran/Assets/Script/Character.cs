@@ -37,6 +37,15 @@ public class Character : MonoBehaviour
             verticalAxis++;
         if (Input.GetKey (_down))
             verticalAxis--;
+        
+        //anim
+        if(horizontalAxis != 0 || verticalAxis != 0)
+            GetComponent<Animator>().SetBool("IsRunning", true);
+        else
+        {
+            GetComponent<Animator>().SetBool("IsRunning", false);
+        }
+            
         #endregion
         
         _moveDirection = new Vector3(horizontalAxis, 0, verticalAxis);

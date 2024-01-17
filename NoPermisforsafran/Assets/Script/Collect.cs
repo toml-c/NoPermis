@@ -41,14 +41,22 @@ public class Collect : MonoBehaviour
     {
         if (Contains(TargetLayer, other.gameObject.layer))
         {
-            other.GetComponent<Character>();
-            Destroy(gameObject);
-            UIManager.instance.Gold += GoldEarn;
+            StartCoroutine(Rob(other.gameObject));
         }
     }
 
     private static bool Contains(LayerMask mask, int layer)
     {
         return mask == (mask | (1 << layer));
+    }
+
+    IEnumerator Rob(GameObject other)
+    {
+        other.GetComponent<Animator>().SetBool("IsRobbing", true);
+        UIManager.instance.Gold += GoldEarn;
+        
+        yield return new WaitForSeconds(0.1f);
+        other.GetComponent<Animator>().SetBool("IsRobbing", false);
+        Destroy(gameObject);
     }
 }
