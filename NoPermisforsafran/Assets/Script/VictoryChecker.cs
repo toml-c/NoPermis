@@ -13,14 +13,14 @@ public class VictoryChecker : MonoBehaviour
 
     private void Update()
     {
-        _feedBackInput.SetActive(_playerCount == 0);
+        _feedBackInput.SetActive(_playerCount != 0);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         _playerCount++;
 
-        if (collision.gameObject.name == "Character1")
+        if (collision.gameObject.name == "Player1")
         {
             BombManager.instance.BombPermited = false;
         }
@@ -35,7 +35,7 @@ public class VictoryChecker : MonoBehaviour
             _leftPressed = true;
         }
 
-        if (_rightPressed && _leftPressed)
+        if (_rightPressed == true && _leftPressed == true)
         {
             Debug.Log("You Won!");
         }
@@ -45,7 +45,7 @@ public class VictoryChecker : MonoBehaviour
     {
         _playerCount--;
         
-        if (_playerCount == 0 || collision.gameObject.name == "Character2")
+        if (_playerCount == 0 || collision.gameObject.name == "Player2")
         {
             BombManager.instance.BombPermited = true;
         }
