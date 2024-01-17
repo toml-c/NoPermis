@@ -11,10 +11,11 @@ public class BombManager : MonoBehaviour
     [SerializeField] private GameObject _areabombPrefab;
     [SerializeField] private LayerMask _targetLayer;
     public bool BombPermited;
+    public bool BombCanExplose;
 
     [Space(10)][Header("Bomb Properties Debug")]
-    [SerializeField] private GameObject _lastestBomb;
-    [SerializeField] private GameObject _previewBomb;
+    public GameObject _lastestBomb;
+    public GameObject _previewBomb;
     [SerializeField] private float _timerMax;
     [SerializeField] private float _currentTimer;
 
@@ -57,9 +58,11 @@ public class BombManager : MonoBehaviour
         {
             _currentTimer -= Time.deltaTime;
         }
-        
-        if (_currentTimer <= 0)
+
+        if (BombCanExplose)
         {
+            BombCanExplose = false;
+            
             foreach (Transform t in _lastestBomb.transform)
             {
                 t.gameObject.SetActive(true);
@@ -67,7 +70,16 @@ public class BombManager : MonoBehaviour
 
             Destroy(_lastestBomb, 0.2f);
             Destroy(_previewBomb, 0.2f);
-
+            
+            BombPermited = true;
+            _currentTimer = _timerMax;
+        }
+        
+        if (_currentTimer <= 0)
+        {
+            Destroy(_lastestBomb);
+            Destroy(_previewBomb);
+            
             BombPermited = true;
             _currentTimer = _timerMax;
         }
