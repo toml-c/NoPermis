@@ -14,9 +14,12 @@ public class DarkZone : MonoBehaviour
     }
     void Update()
     {
-        if (Blocks.Count < NbMax)
+        foreach (var block in Blocks)
         {
-            Zone.SetActive(false);
+            if (block == null)
+            {
+                Zone.SetActive(false);
+            }
         }
     }
 }
