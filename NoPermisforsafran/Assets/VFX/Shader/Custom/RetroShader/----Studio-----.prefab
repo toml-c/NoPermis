@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4840012983576889417}
   - component: {fileID: 1812531896861374152}
-  - component: {fileID: 3043470808892961501}
   - component: {fileID: 4796809515985966267}
   m_Layer: 0
   m_Name: PixCam
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3043470808892961501
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4770215635480078331}
-  m_Enabled: 1
 --- !u!114 &4796809515985966267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +159,7 @@ Transform:
   - {fileID: 3398044543599947468}
   - {fileID: 4840012983576889417}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5240357048299134677
 PrefabInstance:

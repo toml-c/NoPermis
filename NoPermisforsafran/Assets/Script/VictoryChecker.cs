@@ -1,29 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class VictoryChecker : MonoBehaviour
 {
+    public GameObject _feedBackInput;
 
-    public GameObject FeedBackInput;
+    [Space(10)][Header("Debug")]
+    //[SerializeField] private bool _isStolen = false;
+    [SerializeField] private int _playerCount = 0;
+    
+    private bool _leftPressed = false;
+    private bool _rightPressed = false;
 
-    bool _isStolen = false;
-    bool _leftPressed = false;
-    bool _rightPressed = false;
-    int _playerCount = 0;
-
-    private void Start()
+    private void Update()
     {
-        FeedBackInput.SetActive(false);
+        _feedBackInput.SetActive(_playerCount == 0);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (_playerCount == 0)
-            FeedBackInput.SetActive(true);
-
         _playerCount++;
 
         if (collision.gameObject.name == "Character1")
@@ -31,7 +25,7 @@ public class VictoryChecker : MonoBehaviour
             BombManager.instance.BombPermited = false;
         }
 
-        if (_rightPressed ==false && Input.GetKeyUp(KeyCode.RightControl))
+        if (_rightPressed == false && Input.GetKeyUp(KeyCode.RightControl))
         {
             _rightPressed = true;
         }
@@ -41,25 +35,24 @@ public class VictoryChecker : MonoBehaviour
             _leftPressed = true;
         }
 
-
-        if (_rightPressed == true && _leftPressed == true)
+        if (_rightPressed && _leftPressed)
         {
             Debug.Log("You Won!");
         }
-
     }
 
     private void OnTriggerExit(Collider collision)
     {
         _playerCount--;
-
-        if (_playerCount == 0)
-            FeedBackInput.SetActive(false);
-
+        
         if (_playerCount == 0 || collision.gameObject.name == "Character2")
         {
             BombManager.instance.BombPermited = true;
         }
+    }
 
+    private static bool Contains(LayerMask mask, int layer)
+    {
+        return mask == (mask | (1 << layer));
     }
 }
