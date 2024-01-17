@@ -8,7 +8,6 @@ public class BombManager : MonoBehaviour
     private GameObject _player1;
     [SerializeField] private GameObject _bombPrefab;
     [SerializeField] private LayerMask _targetLayer;
-    [SerializeField] private float _bombRange;
     public bool BombPermited;
 
     [Space(10)][Header("Bomb Properties Debug")]
@@ -39,6 +38,7 @@ public class BombManager : MonoBehaviour
         _currentTimer = _timerMax;
         _currentTimerRecursive = _timerRecursiveMax;
         BombPermited = true;
+        _nbRecursiveBomb = 1;
     }
 
     void Update()
@@ -57,13 +57,6 @@ public class BombManager : MonoBehaviour
         
         if (_currentTimer <= 0)
         {
-            Collider[] col = Physics.OverlapSphere(_lastestBomb.transform.position, _bombRange, _targetLayer);
-
-            foreach (var item in col)
-            {
-                Destroy(item.gameObject);
-            }
-
             foreach (Transform t in _lastestBomb.transform)
             {
                 t.gameObject.SetActive(true);
@@ -84,7 +77,7 @@ public class BombManager : MonoBehaviour
         if (_currentTimerRecursive <= 0)
         {
             _isRecursive = false;
-            _nbRecursiveBomb = 0;
+            _nbRecursiveBomb = 1;
         }
     }
 
