@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public List<GameObject> ButtonsMenu = new List<GameObject>();
+    public List<GameObject> Noms = new List<GameObject>();
+
 
     public void OnClickPlay()
     {
@@ -27,5 +30,29 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 
+    public void OnClickCredits()
+    {
+        for (int i = 0; i < ButtonsMenu.Count; i++)
+        {
+            ButtonsMenu[i].SetActive(false);
+        }
 
+        for (int i = 0; i < Noms.Count; i++)
+        {
+            Noms[i].SetActive(true);
+        }
+    }
+
+    public void OnClickReturns()
+    {
+        for (int i = 0; i < Noms.Count; i++)
+        {
+            Noms[i].SetActive(false);
+        }
+
+        for (int i = 0; i < ButtonsMenu.Count; i++)
+        {
+            ButtonsMenu[i].SetActive(true);
+        }
+    }
 }
